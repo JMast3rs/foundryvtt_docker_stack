@@ -1,0 +1,65 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+  internal:
+    external: false
+
+services:
+  traefik:
+    image: traefik:v2.2
+    restart: always
+    container_name: traefik
+    user: "${UID}:${GID}"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/traefik.toml:/traefik.toml
+      - ./traefik/traefik_dynamic.toml:/traefik_dynamic.toml
+      - ./traefik/acme.json:/acme.json
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - web
+
+  foundry:
+    image: direckthit/fvtt-docker:latest
+    restart: always
+    container_name: foundry
+    user: "${UID}:${GID}"
+    volumes:
+      - ./foundry:/data/foundryvtt
+      - ./foundry_download:/host
+    labels:
+      - traefik.http.routers.alpha_foundry.rule=Host(`foundry.domain.com`)
+      - traefik.http.routers.alpha_foundry.tls=true
+      - traefik.http.routers.alpha_foundry.tls.certresolver=lets-encrypt
+      - traefik.port=30000
+    networks:
+      - internal
+      - web
+    depends_on:
+      - traefik
+
+  filebrowser:
+    image: hurlenko/filebrowser
+    restart: always
+    container_name: filebrowser
+    user: "${UID}:${GID}"
+    volumes:
+      - ./foundry:/foundry
+      - ./filebrowser:/config
+    command: ["--root=/foundry", "--address=0.0.0.0", "--database=/config/filebrowser.db"]
+    environment:
+      - FB_BASEURL=/filebrowser
+    labels:
+      - traefik.http.routers.alpha_filebrowser.rule=Host(`filebrowser.domain.com`)
+      - traefik.http.routers.alpha_filebrowser.tls=true
+      - traefik.http.routers.alpha_filebrowser.tls.certresolver=lets-encrypt
+      - traefik.port=8080
+    networks:
+      - internal
+      - web
+    depends_on:
+      - traefik
