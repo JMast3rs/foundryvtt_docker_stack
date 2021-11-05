@@ -23,6 +23,28 @@ services:
     networks:
       - web
 
+  portainer:
+    image: portainer/portainer-ce:latest
+    restart: always
+    container_name: portainer
+    user: "${UID}:${GID}"
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer:/data
+    labels:
+      - traefik.http.routers.portainer.rule=Host(`management.domain.com`)
+      - traefik.http.routers.portainer.entrypoints=websecure
+      - traefik.http.services.portainer.loadbalancer.server.port=9000
+      - traefik.http.routers.portainer.tls=true
+      - traefik.http.routers.portainer.service=portainer
+      - traefik.http.routers.portainer.tls.certresolver=lets-encrypt
+    networks:
+      - internal
+      - web
+    depends_on:
+      - traefik   
+
   foundry:
     image: direckthit/fvtt-docker:latest
     restart: always
