@@ -54,9 +54,9 @@ services:
       - ./data/foundry:/data/foundryvtt
       - ./foundry_download:/host
     labels:
-      - traefik.http.routers.alpha_foundry.rule=Host(`foundry.domain.com`)
-      - traefik.http.routers.alpha_foundry.tls=true
-      - traefik.http.routers.alpha_foundry.tls.certresolver=lets-encrypt
+      - traefik.http.routers.foundry.rule=Host(`foundry.domain.com`)
+      - traefik.http.routers.foundry.tls=true
+      - traefik.http.routers.foundry.tls.certresolver=lets-encrypt
       - traefik.port=30000
     networks:
       - internal
@@ -76,9 +76,9 @@ services:
     environment:
       - FB_BASEURL=/filebrowser
     labels:
-      - traefik.http.routers.alpha_filebrowser.rule=Host(`filebrowser.domain.com`)
-      - traefik.http.routers.alpha_filebrowser.tls=true
-      - traefik.http.routers.alpha_filebrowser.tls.certresolver=lets-encrypt
+      - traefik.http.routers.filebrowser.rule=Host(`filebrowser.domain.com`)
+      - traefik.http.routers.filebrowser.tls=true
+      - traefik.http.routers.filebrowser.tls.certresolver=lets-encrypt
       - traefik.port=8080
     networks:
       - internal
