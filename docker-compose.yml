@@ -14,9 +14,9 @@ services:
     user: "${UID}:${GID}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/traefik.toml:/traefik.toml
-      - ./traefik/traefik_dynamic.toml:/traefik_dynamic.toml
-      - ./traefik/acme.json:/acme.json
+      - ./data/traefik/traefik.toml:/traefik.toml
+      - ./data/traefik/traefik_dynamic.toml:/traefik_dynamic.toml
+      - ./data/traefik/acme.json:/acme.json
     ports:
       - 80:80
       - 443:443
@@ -31,7 +31,7 @@ services:
     command: -H unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./portainer:/data
+      - ./data/portainer:/data
     labels:
       - traefik.http.routers.portainer.rule=Host(`management.domain.com`)
       - traefik.http.routers.portainer.entrypoints=websecure
@@ -51,7 +51,7 @@ services:
     container_name: foundry
     user: "${UID}:${GID}"
     volumes:
-      - ./foundry:/data/foundryvtt
+      - ./data/foundry:/data/foundryvtt
       - ./foundry_download:/host
     labels:
       - traefik.http.routers.alpha_foundry.rule=Host(`foundry.domain.com`)
@@ -70,8 +70,8 @@ services:
     container_name: filebrowser
     user: "${UID}:${GID}"
     volumes:
-      - ./foundry:/foundry
-      - ./filebrowser:/config
+      - ./data/foundry:/foundry
+      - ./data/filebrowser:/config
     command: ["--root=/foundry", "--address=0.0.0.0", "--database=/config/filebrowser.db"]
     environment:
       - FB_BASEURL=/filebrowser
