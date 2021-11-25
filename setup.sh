@@ -20,3 +20,4 @@ sudo docker network create web
 touch data/traefik/acme.json
 chmod 600 data/traefik/acme.json
 
+sudo docker-compose up -d
