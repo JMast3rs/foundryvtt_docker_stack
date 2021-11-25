@@ -24,6 +24,7 @@ Hi! This is my pre-made Docker stack, which is an all round solution to for Foun
 Once you have done the prerequisites e.g. have a server.... pointed your sub domains to your server.... and brought foundry with the need zip file.
 
 First you need to clone my git repo! This is simple and can be done with one line!
+
 `sudo git clone https://github.com/JMast3rs/foundryvtt_docker_stack.git`
 
 Once you have downloaded that you will need to edit the listed files.
@@ -42,6 +43,7 @@ Next you can will need to upload your foundry `foundryvtt-0.x.x.zip` to the `fou
 ### Installing Docker, Docker-Compose and setting up Traefik!
 
 All the needed commands are in the setup.sh file. You can run it with the command below, this may take up to 5mins to run.
+
 `sudo sh setup.sh`
 
 If you have done everything correct... running the `sudo docker ps` should output something like this.
