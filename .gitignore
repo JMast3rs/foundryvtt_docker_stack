@@ -1,3 +1,4 @@
 foundry_download/foundryvtt-0.8.7.zip
 foundry/data/*
 traefik/acme.json
+git_backup.sh
