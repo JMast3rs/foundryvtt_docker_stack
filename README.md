@@ -33,6 +33,10 @@ Once you have downloaded that you will need to edit the listed files.
 - `data/traefik/traefik_dynamic.toml`
 	- In this file you will need to replace the line with `deployment.domain.com` with your domain.
 
+- `data/traefik/traefik.toml`
+	- In this file you will need to replace with `email@domain.com` with your email. This is just used for LetsEncrypt.
+
+
 Next you can will need to upload your foundry `foundryvtt-0.x.x.zip` to the `foundry_download` folder.
 
 ### Installing Docker, Docker-Compose and setting up Traefik!
@@ -51,5 +55,5 @@ a4219b077ba4   traefik:v2.2                    "/entrypoint.sh trae…"   11 sec
 
 Give it 5min+ once the command has ran and you should be able to navigate to your webservers..... 
 
- Logins for Filebrowser & Traefik are both **admin/password**.
+Logins for Filebrowser & Traefik are both **admin/password**.
 
