@@ -7,10 +7,10 @@ Hi! This is my pre-made Docker stack, which is an all round solution to for Foun
 
 - **Domain Name**
 	- You will need to have a domain name, where you can point a number of subdomains too. This is so that each of the services that are used can be controlled from each domain. All of these domain will be pointed to the same IP (which is the Ubuntu Server).
-	- Portainer - management.domain.com
-	- FileBrowser - filebrowser.domain.com
-	- FoundryVTT - foundry.domain.com
-	- Traefik - deployment.domain.com
+	- Portainer - `management.domain.com`
+	- FileBrowser - `filebrowser.domain.com`
+	- FoundryVTT - `foundry.domain.com`
+	- Traefik - `deployment.domain.com`
 - **Ubuntu Server**
 	- You will need a Ubuntu Server with access an public IP. The best option for this is too use a cloud provider like DigitalOcean... AWS..... Linode....etc! 
 	- I personally use DigitalOcean with the $5 a mouth droplet. This works perfectly well.
@@ -26,7 +26,7 @@ Once you have done the prerequisites e.g. have a server.... pointed your sub dom
 First you need to clone my git repo! This is simple and can be done with one line!
 `sudo git clone https://github.com/JMast3rs/foundryvtt_docker_stack.git`
 
-Once you have downloaded that you will need to edit the list files.
+Once you have downloaded that you will need to edit the listed files.
 - `docker-compose.yml`
 	- In this file you will need to replace the line with `.domain.com` with your domain. This will need to be done for `management.domain.com` , `filebrowser.domain.com` , `foundry.domain.com` 
 	
