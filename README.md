@@ -40,6 +40,8 @@ Once you have downloaded that you will need to edit the listed files.
 
 Next you can will need to upload your foundry `foundryvtt-0.x.x.zip` to the `foundry_download` folder.
 
+Note: Default file name may be `FoundryVTT-x.xxx.zip`, this will need to be renamed to lower case, `foundryvtt-x.xxx.zip` or it wont be found by the scripts.
+
 ### Installing Docker, Docker-Compose and setting up Traefik!
 
 All the needed commands are in the setup.sh file. You can run it with the command below, this may take up to 5mins to run.
